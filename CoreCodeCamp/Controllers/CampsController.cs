@@ -25,8 +25,8 @@ namespace CoreCodeCamp.Controllers
             _mapper = mapper;
             _linkGenerator = linkGenerator;
         }
-        [HttpGet] 
-        public async Task<ActionResult<CampModel[]>> Get(bool includeTalks = false) 
+        [HttpGet]
+        public async Task<ActionResult<CampModel[]>> Get(bool includeTalks = false)
         {
             try
             {
@@ -39,10 +39,10 @@ namespace CoreCodeCamp.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
 
-            
+
         }
         [HttpGet("{moniker}")]
-        public async Task <ActionResult<CampModel>> Get(string moniker)
+        public async Task<ActionResult<CampModel>> Get(string moniker)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace CoreCodeCamp.Controllers
                 var results = await _repository.GetAllCampsByEventDate(theDate, includeTalks);
                 if (!results.Any()) return NotFound();
 
-                return _mapper.Map<CampModel[]>(results); 
+                return _mapper.Map<CampModel[]>(results);
             }
             catch (Exception)
             {
@@ -75,7 +75,7 @@ namespace CoreCodeCamp.Controllers
             }
         }
 
-        
+        [HttpPost]
         public async Task<ActionResult<CampModel>> Post(CampModel model)
         {
             try
@@ -94,7 +94,7 @@ namespace CoreCodeCamp.Controllers
                 //Create a new Camp
                 var camp = _mapper.Map<Camp>(model);
                 _repository.Add(camp);
-                if(await _repository.SaveChangesAsync())
+                if (await _repository.SaveChangesAsync())
                 {
                     return Created($"/api/camps/{camp.Moniker}", _mapper.Map<CampModel>(camp));
                 }
@@ -105,6 +105,54 @@ namespace CoreCodeCamp.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
             return BadRequest();
+        }
+
+        [HttpPut("{moniker}")]
+        public async Task<ActionResult<CampModel>> Put(string moniker, CampModel model)
+        {
+            try
+            {
+                var oldCamp = await _repository.GetCampAsync(model.Moniker);
+                if (oldCamp == null) return NotFound($"Could not find camp with moniker of {moniker}");
+
+                _mapper.Map(model, oldCamp);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return _mapper.Map<CampModel>(oldCamp);
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("{moniker}")]
+        public async Task<IActionResult> Delete(string moniker)
+        {
+            try
+            {
+                var oldCamp = await _repository.GetCampAsync(moniker);
+                if (oldCamp == null) return NotFound();
+
+                _repository.Delete(oldCamp);
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Ok();
+                }
+            }
+            catch (Exception)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
+
+            return BadRequest("Failed to delete the camp");
         }
     }
 }
