@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "DrpE1iY3Xq9Jdpm/CQDtR7TB7FyrYkRgAeleOMJpSc8MJdZ4nXPP7Bs7lPnpJgl6QWUl8Dbc/ZgZ5JpUtO4DUw==",
+  "dgSpecHash": "HazFwVdczo62Ur6+xaBl6poyLxZpl3gfmsR0cPCVcWE2hds3uj8zIL/OcsQxmqsaeXnhJAtozXlYHu6IDatOrA==",
   "success": true,
   "projectFilePath": "C:\\Users\\alexj\\source\\repos\\CoreCodeCamp\\CoreCodeCamp\\CoreCodeCamp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alexj\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\alexj\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
     "C:\\Users\\alexj\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\alexj\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\4.1.1\\microsoft.aspnetcore.mvc.versioning.4.1.1.nupkg.sha512",
     "C:\\Users\\alexj\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\alexj\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",
     "C:\\Users\\alexj\\.nuget\\packages\\microsoft.aspnetcore.razor.runtime\\2.2.0\\microsoft.aspnetcore.razor.runtime.2.2.0.nupkg.sha512",

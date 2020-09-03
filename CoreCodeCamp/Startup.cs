@@ -19,7 +19,11 @@ namespace CoreCodeCamp
             services.AddDbContext<CampContext>();
             services.AddScoped<ICampRepository, CampRepository>();
             services.AddAutoMapper(typeof (Startup));
-            services.AddControllers();
+            services.AddApiVersioning(opt => {
+                opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 1);
+                opt.ReportApiVersions = true;
+            });
+            services.AddControllers(opt => opt.EnableEndpointRouting=false);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
