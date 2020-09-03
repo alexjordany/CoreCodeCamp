@@ -20,6 +20,7 @@ namespace CoreCodeCamp
             services.AddScoped<ICampRepository, CampRepository>();
             services.AddAutoMapper(typeof (Startup));
             services.AddApiVersioning(opt => {
+                opt.AssumeDefaultVersionWhenUnspecified = true;
                 opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 1);
                 opt.ReportApiVersions = true;
             });
